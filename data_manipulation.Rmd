@@ -1,0 +1,296 @@
+---
+title: "Untitled"
+output: pdf_document
+---
+
+```{r, include=TRUE}
+library(tidyr)
+library(stringr)
+library(ggplot2)
+library(kknn) ## knn library
+library(dplyr)
+library(caret)
+```
+
+
+```{r, include=TRUE}
+
+#Prepare US Presidents Data set
+
+data <- read.csv('us_presidents.csv')
+data$start <- as.character(data$start)
+
+data <- data %>% separate(col="start", into =c('day','start_year'), sep=-5, extra = 'drop', remove = FALSE)
+data <- data %>% separate(col="end", into =c('day','end_year'), sep=-5, extra = 'drop', remove = FALSE)
+data <- data %>% separate(col="president", into =c("first", "middle", 'middle2', 'last'), sep=" ", extra = 'drop', remove = FALSE, fill="left")
+data$start_year <- as.numeric(data$start_year)
+data$end_year <- as.numeric(data$end_year)
+data$day <- NULL
+
+
+data$second_term <- ((data$end_year - data$start_year) > 4)
+
+write.csv(data, "us_presidents_cleaned.csv")
+
+```
+
+
+```{r, include=TRUE}
+
+# Create speeches csv
+
+files <- list.files("./state-of-the-union-corpus-1989-2017")
+
+files_split <- read.table(text = files, sep = "_")
+
+files_split <- files_split %>% separate(col="V2", into ="year", sep='.txt', extra = 'drop', remove = TRUE)
+
+speeches = 1:length(files)
+
+for(i in speeches) {
+  fileName <- paste('./state-of-the-union-corpus-1989-2017/',files[i], sep="")
+  speeches <- readChar(fileName, file.info(fileName)$size)
+}
+
+data <- data.frame("year" = files_split$year, "name" = files_split$V1, "text" = speeches)
+
+write.csv(data, "speeches.csv")
+
+```
+
+```{r, include=TRUE}
+
+# Add lemmatized data to speeches csv
+
+files <- list.files("./state-of-the-union-lemmatized")
+
+speeches = 1:length(files)
+
+for(i in speeches) {
+  fileName <- paste('./state-of-the-union-lemmatized/',files[i], sep="")
+  lemmatizedText <- readChar(fileName, file.info(fileName)$size)
+}
+
+data$lemmatizedText <- lemmatizedText
+
+write.csv(data, "speeches.csv")
+
+```
+
+```{r, include=TRUE}
+
+# Add topics to speeches csv
+
+presidents <- read.csv('us_presidents_cleaned.csv')
+data <- read.csv('speeches.csv')
+extra_data <- read.csv('extra_data.csv')
+
+files <- list.files("./topics")
+
+fileLen = 1:length(files)
+topicsBlob <- vector(mode = "list", length = length(files))
+
+for(i in fileLen) {
+  fileName <- paste('./topics/',files[i], sep="")
+  topicsBlob[i] <- readChar(fileName, file.info(fileName)$size)
+}
+
+data$topicsBlob <- topicsBlob
+
+# separate into topics column
+
+data <- data %>%
+  separate(topicsBlob, into=c("topic0","topic1", "topic2", "topic3", "topic4", "topic5", "topic6", "topic7", "topic8", "topic9", "topic10", "topic11"), sep="\n", extra="warn", remove=FALSE)
+
+data$topic0 = NULL
+data$topic11 = NULL
+
+# do some preliminary analysis of topics and encode variables
+
+data$war <- if_else(grepl("war", data$topicsBlob), 1, 0)
+data$warFirstTopic <- if_else(grepl("war", data$topic1), 1, 0)
+
+data$nation <- if_else(grepl("nation|national|nationality", data$topicsBlob), 1, 0)
+data$nationFirstTopic <- if_else(grepl("nation|national|nationality", data$topic1), 1, 0)
+
+data$debt <- if_else(grepl("debt", data$topicsBlob), 1, 0)
+data$debtFirstTopic <- if_else(grepl("debt", data$topic1), 1, 0)
+
+data$economy <- if_else(grepl("debt|economy|fiscal|expenditures|appropriations|commerce|market|produce", data$topicsBlob), 1, 0)
+data$economyFirstTopic <- if_else(grepl("debt|economy|fiscal|expenditures|appropriations|commerce|market|produce", data$topic1), 1, 0)
+
+data$fiscal <- if_else(grepl("debt|fiscal|floating|commerce|treasury|receipts|money|loan|budget|taxes", data$topicsBlob), 1, 0)
+data$fiscalFirstTopic <- if_else(grepl("debt|fiscal|floating|commerce|treasury|receipts|money|loan|budget|taxes", data$topic1), 1, 0)
+
+data$law <- if_else(grepl("law|order|right|laws|legislation", data$topicsBlob), 1, 0)
+data$lawFirstTopic <- if_else(grepl("law|order|right|laws|legislation", data$topic1), 1, 0)
+
+data$railroads <- if_else(grepl("railroad|railroads", data$topicsBlob), 1, 0)
+data$interstate <- if_else(grepl("interstate", data$topicsBlob), 1, 0)
+data$medical <- if_else(grepl("medical", data$topicsBlob), 1, 0)
+data$world <- if_else(grepl("world", data$topicsBlob), 1, 0)
+data$taxes <- if_else(grepl("taxes", data$topicsBlob), 1, 0)
+data$armenia <- if_else(grepl("armenia", data$topicsBlob), 1, 0)
+data$islands <- if_else(grepl("islands|island", data$topicsBlob), 1, 0)
+data$gentlemen <- if_else(grepl("gentleme|men", data$topicsBlob), 1, 0)
+data$ladies <- if_else(grepl("ladies|women", data$topicsBlob), 1, 0)
+data$powerful <- if_else(grepl("force|power|action|act|make", data$topicsBlob), 1, 0)
+data$believe <- if_else(grepl("believe", data$topicsBlob), 1, 0)
+data$public <- if_else(grepl("public", data$topicsBlob), 1, 0)
+data$private <- if_else(grepl("private", data$topicsBlob), 1, 0)
+data$duty <- if_else(grepl("duty", data$topicsBlob), 1, 0)
+data$storage <- if_else(grepl("storage", data$topicsBlob), 1, 0)
+
+#these are too big and their job is done; take them out
+
+data$lemmatizedText <- NULL
+data$text <- NULL
+
+# merge in us presidents data
+
+data <- merge(data, presidents, by.x = "name", by.y = "last", all.x=TRUE)
+
+# merge in other data
+
+data <- merge(data, extra_data, by.x = "year", by.y = "Year", all.x=TRUE)
+
+
+data <- apply(data,2,as.character)
+
+write.csv(data, "speeches.csv")
+
+```
+
+```{r, include=TRUE}
+
+data <- read.csv('topicblob_vectorized.csv')
+
+data <- data %>% drop_na(party)
+
+num_observations <- nrow(data)
+
+majority = num_observations * .8
+
+rows <- sample(nrow(data), majority)
+
+train <- data[rows, ]
+test <- data[-rows, ]
+
+result <- kknn(party ~ topicsBlob, train, test, k=3, kernel = "rectangular")
+
+predictions <- predict(result, newdata=test)
+
+errors <- 1:length(test$party)
+
+errors$answer <- test$party
+
+errors$prediction <- predictions
+
+errors$match <- as.numeric(if_else(errors$answer == errors$prediction, 1, 0))
+
+print(sum(errors$match)/length(errors))
+
+print(predictions)
+
+```
+
+```{r, include=TRUE}
+
+immigration <- read.csv('immigration.csv')
+war <- read.csv('war.csv')
+economy <- read.csv('economy.csv')
+interesting <- read.csv('interesting.csv')
+
+data <- merge(immigration, war, by.x = "year", by.y = "year", all.x=TRUE)
+data <- merge(data, economy, by.x = "year", by.y = "year", all.x=TRUE)
+data <- merge(data, interesting, by.x = "year", by.y = "year", all.x=TRUE)
+
+data$president.x <- NULL
+data$president.y <- NULL
+data$party.x <- NULL
+data$party.y <- NULL
+
+data$president.x <- NULL
+data$party.x <- NULL
+
+data$speech_total.x <- NULL
+data$speech_total.y <- NULL
+data$speech_total.x <- NULL
+data$speech_total.y <- NULL
+
+names(data)[names(data) == 'president.y'] <- 'president'
+names(data)[names(data) == 'party.y'] <- 'party'
+
+write.csv(data, "combine_topic_words.csv")
+
+```
+
+```{r, include=TRUE}
+
+#data2 <- data %>% filter(year >= 1866)
+#data2$party[data2$party == "National Union   [i]   ( Democratic )   [j]"] <- "Democratic"
+
+num_observations <- nrow(data)
+
+majority = num_observations * .8
+
+rows <- sample(nrow(data), majority)
+
+train <- data[rows, ]
+test <- data[-rows, ]
+
+fit <- glm(party ~ ., train, family='binomial')
+
+print(summary(fit)) 
+
+```
+
+
+```{r, include=TRUE}
+
+num_observations <- nrow(data)
+
+majority = num_observations * .8
+
+rows <- sample(nrow(data), majority)
+
+train <- data[rows, ]
+test <- data[-rows, ]
+
+
+fit <- train(party ~ ., train, method = 'svmLinear3')
+
+print(summary(fit)) 
+
+predictions = predict(fit, test)
+errors$answer <- test$party
+
+errors$prediction <- predictions
+
+errors$match <- as.numeric(if_else(errors$answer == errors$prediction, 1, 0))
+
+print("Percent Correct: \n")
+print(sum(errors$match)/length(errors))
+
+print(predictions)
+
+```
+
+```{r, include=TRUE}
+
+result <- kknn(party ~ ., train, test, k=3, kernel = "rectangular")
+
+predictions <- predict(result, newdata=test)
+
+errors$answer <- test$party
+
+errors$prediction <- predictions
+
+errors$match <- as.numeric(if_else(errors$answer == errors$prediction, 1, 0))
+
+print("Percent Correct: \n")
+print(sum(errors$match)/length(errors))
+
+print(predictions)
+
+```

@@ -1,0 +1,46 @@
+"","X","S.No.","start","start_year","end","president","first","middle","middle2","last","end_year","prior","party","vice","second_term"
+"1",0,1,"April 30, 1789",1789,"March 4, 1797","George Washington",NA,NA,"George","Washington",1797,"Commander-in-Chief  of the  Continental Army   ( 1775–1783 )","Nonpartisan   [13]","John Adams",TRUE
+"2",1,2,"March 4, 1797",1797,"March 4, 1801","John Adams",NA,NA,"John","Adams",1801,"1st  Vice President of the United States","Federalist","Thomas Jefferson",FALSE
+"3",2,3,"March 4, 1801",1801,"March 4, 1809","Thomas Jefferson",NA,NA,"Thomas","Jefferson",1809,"2nd  Vice President of the United States","Democratic-  Republican","Aaron Burr",TRUE
+"4",3,4,"March 4, 1809",1809,"March 4, 1817","James Madison",NA,NA,"James","Madison",1817,"5th  United States Secretary of State   (1801–1809)","Democratic-  Republican","George Clinton",TRUE
+"5",4,5,"March 4, 1817",1817,"March 4, 1825","James Monroe",NA,NA,"James","Monroe",1825,"7th  United States Secretary of State   (1811–1817)","Democratic-  Republican","Daniel D. Tompkins",TRUE
+"6",5,6,"March 4, 1825",1825,"March 4, 1829","John Quincy Adams",NA,"John","Quincy","Adams",1829,"8th  United States Secretary of State   (1817–1825)","Democratic-  Republican","John C. Calhoun",FALSE
+"7",6,7,"March 4, 1829",1829,"March 4, 1837","Andrew Jackson",NA,NA,"Andrew","Jackson",1837,"U.S. Senator   ( Class 2 )   from  Tennessee   (1823–1825)","Democratic","John C. Calhoun",TRUE
+"8",7,8,"March 4, 1837",1837,"March 4, 1841","Martin Van Buren",NA,"Martin","Van","Buren",1841,"8th  Vice President of the United States","Democratic","Richard Mentor Johnson",FALSE
+"9",8,9,"March 4, 1841",1841,"April 4, 1841","William Henry Harrison",NA,"William","Henry","Harrison",1841,"United States Minister to Colombia   (1828–1829)","Whig","John Tyler",FALSE
+"10",9,10,"April 4, 1841",1841,"March 4, 1845","John Tyler",NA,NA,"John","Tyler",1845,"10th  Vice President of the United States","Whig   April 4, 1841  –  September 13, 1841","Office vacant",FALSE
+"11",10,11,"March 4, 1845",1845,"March 4, 1849","James K. Polk",NA,"James","K.","Polk",1849,"9th  Governor of Tennessee   (1839–1841)","Democratic","George M. Dallas",FALSE
+"12",11,12,"March 4, 1849",1849,"July 9, 1850","Zachary Taylor",NA,NA,"Zachary","Taylor",1850,"Major General  of the  1st Infantry Regiment   United States Army   (1846–1849)","Whig","Millard Fillmore",FALSE
+"13",12,13,"July 9, 1850",1850,"March 4, 1853","Millard Fillmore",NA,NA,"Millard","Fillmore",1853,"12th  Vice President of the United States","Whig","Office vacant",FALSE
+"14",13,14,"March 4, 1853",1853,"March 4, 1857","Franklin Pierce",NA,NA,"Franklin","Pierce",1857,"Brigadier General  of the  9th Infantry   United States Army   (1847–1848)","Democratic","William R. King",FALSE
+"15",14,15,"March 4, 1857",1857,"March 4, 1861","James Buchanan",NA,NA,"James","Buchanan",1861,"United States Minister  to the   Court of St James's   (1853–1856)","Democratic","John C. Breckinridge",FALSE
+"16",15,16,"March 4, 1861",1861,"April 15, 1865","Abraham Lincoln",NA,NA,"Abraham","Lincoln",1865,"U.S. Representative  for  Illinois' 7th District   (1847–1849)","Republican   ( National Union )   [i]","Hannibal Hamlin",FALSE
+"17",16,17,"April 15, 1865",1865,"March 4, 1869","Andrew Johnson",NA,NA,"Andrew","Johnson",1869,"16th  Vice President of the United States","National Union   [i]   ( Democratic )   [j]","Office vacant",FALSE
+"18",17,18,"March 4, 1869",1869,"March 4, 1877","Ulysses S. Grant",NA,"Ulysses","S.","Grant",1877,"Commanding General  of the U.S. Army   ( 1864–1869 )","Republican","Schuyler Colfax",TRUE
+"19",18,19,"March 4, 1877",1877,"March 4, 1881","Rutherford B. Hayes",NA,"Rutherford","B.","Hayes",1881,"29th & 32nd  Governor of Ohio   (1868–1872 & 1876–1877)","Republican","William A. Wheeler",FALSE
+"20",19,20,"March 4, 1881",1881,"September 19, 1881","James A. Garfield",NA,"James","A.","Garfield",1881,"U.S. Representative  for  Ohio's 19th District   (1863–1881)","Republican","Chester A. Arthur",FALSE
+"21",20,21,"September 19, 1881",1881,"March 4, 1885","Chester A. Arthur",NA,"Chester","A.","Arthur",1885,"20th  Vice President of the United States","Republican","Office vacant",FALSE
+"22",21,22,"March 4, 1885",1885,"March 4, 1889","Grover Cleveland",NA,NA,"Grover","Cleveland",1889,"28th  Governor of New York   (1883–1885)","Democratic","Thomas A. Hendricks",FALSE
+"23",22,23,"March 4, 1889",1889,"March 4, 1893","Benjamin Harrison",NA,NA,"Benjamin","Harrison",1893,"U.S. Senator   ( Class 1 )   from  Indiana   (1881–1887)","Republican","Levi P. Morton",FALSE
+"24",23,24,"March 4, 1893",1893,"March 4, 1897","Grover Cleveland",NA,NA,"Grover","Cleveland",1897,"22nd  President of the United States   (1885–1889)","Democratic","Adlai Stevenson",FALSE
+"25",24,25,"March 4, 1897",1897,"September 14, 1901","William McKinley",NA,NA,"William","McKinley",1901,"39th  Governor of Ohio   (1892–1896)","Republican","Garret Hobart",FALSE
+"26",25,26,"September 14, 1901",1901,"March 4, 1909","Theodore Roosevelt",NA,NA,"Theodore","Roosevelt",1909,"25th  Vice President of the United States","Republican","Office vacant",TRUE
+"27",26,27,"March 4, 1909",1909,"March 4, 1913","William Howard Taft",NA,"William","Howard","Taft",1913,"42nd  United States Secretary of War   (1904–1908)","Republican","James S. Sherman",FALSE
+"28",27,28,"March 4, 1913",1913,"March 4, 1921","Woodrow Wilson",NA,NA,"Woodrow","Wilson",1921,"34th  Governor of New Jersey   (1911–1913)","Democratic","Thomas R. Marshall",TRUE
+"29",28,29,"March 4, 1921",1921,"August 2, 1923","Warren G. Harding",NA,"Warren","G.","Harding",1923,"U.S. Senator   ( Class 3 )   from  Ohio   (1915–1921)","Republican","Calvin Coolidge",FALSE
+"30",29,30,"August 2, 1923",1923,"March 4, 1929","Calvin Coolidge",NA,NA,"Calvin","Coolidge",1929,"29th  Vice President of the United States","Republican","Office vacant",TRUE
+"31",30,31,"March 4, 1929",1929,"March 4, 1933","Herbert Hoover",NA,NA,"Herbert","Hoover",1933,"3rd  United States Secretary of Commerce   (1921–1928)","Republican","Charles Curtis",FALSE
+"32",31,32,"March 4, 1933",1933,"January 20, 1941","Franklin D. Roosevelt",NA,"Franklin","D.","Roosevelt",1941,"44th  Governor of New York   ( 1929–1932 )","Democratic","John Nance Garner",TRUE
+"33",32,33,"April 12, 1945",1945,"January 20, 1953","Harry S. Truman",NA,"Harry","S.","Truman",1953,"34th  Vice President of the United States","Democratic","Office vacant",TRUE
+"34",33,34,"January 20, 1953",1953,"January 20, 1961","Dwight D. Eisenhower",NA,"Dwight","D.","Eisenhower",1961,"Supreme Allied Commander Europe   ( 1949–1952 )","Republican","Richard Nixon",TRUE
+"35",34,35,"January 20, 1961",1961,"November 22, 1963","John F. Kennedy",NA,"John","F.","Kennedy",1963,"U.S. Senator   ( Class 1 )   from  Massachusetts   (1953–1960)","Democratic","Lyndon B. Johnson",FALSE
+"36",35,36,"November 22, 1963",1963,"January 20, 1969","Lyndon B. Johnson",NA,"Lyndon","B.","Johnson",1969,"37th  Vice President of the United States","Democratic","Office vacant",TRUE
+"37",36,37,"January 20, 1969",1969,"August 9, 1974","Richard Nixon",NA,NA,"Richard","Nixon",1974,"36th  Vice President of the United States   (1953–1961)","Republican","Spiro Agnew",TRUE
+"38",37,38,"August 9, 1974",1974,"January 20, 1977","Gerald Ford",NA,NA,"Gerald","Ford",1977,"40th  Vice President of the United States","Republican","Office vacant",FALSE
+"39",38,39,"January 20, 1977",1977,"January 20, 1981","Jimmy Carter",NA,NA,"Jimmy","Carter",1981,"76th  Governor of Georgia   (1971–1975)","Democratic","Walter Mondale",FALSE
+"40",39,40,"January 20, 1981",1981,"January 20, 1989","Ronald Reagan",NA,NA,"Ronald","Reagan",1989,"33rd  Governor of California   ( 1967–1975 )","Republican","George H. W. Bush",TRUE
+"41",40,41,"January 20, 1989",1989,"January 20, 1993","George H. Bush",NA,"George","H.","Bush",1993,"43rd  Vice President of the United States","Republican","Dan Quayle",FALSE
+"42",41,42,"January 20, 1993",1993,"January 20, 2001","Bill Clinton",NA,NA,"Bill","Clinton",2001,"40th & 42nd  Governor of Arkansas   (1979–1981 & 1983–1992)","Democratic","Al Gore",TRUE
+"43",42,43,"January 20, 2001",2001,"January 20, 2009","George W. Bush",NA,"George","W.","Bush",2009,"46th  Governor of Texas   ( 1995–2000 )","Republican","Dick Cheney",TRUE
+"44",43,44,"January 20, 2009",2009,"","Barack Obama",NA,NA,"Barack","Obama",NA,"U.S. Senator   ( Class 3 )   from  Illinois   ( 2005–2008 )","Democratic","Joe Biden",NA
+"45",44,45,"January 20, 2017",2017,"--","Donald Trump",NA,NA,"Donald","Trump",NA,"Chairman of   The Trump Organization   ( 1971–present )","Republican","Mike Pence",NA
